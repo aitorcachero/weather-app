@@ -1,8 +1,9 @@
-# React + Vite
+# APP Weather con React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Hoy traigo un mini proyecto en React haciendo uso de una API para obtener información básica en tiempo real del tiempo en cualquier sitio del planeta.
 
-Currently, two official plugins are available:
+Diseño responsive haciendo uso de localStorage para guardar la información de las últimas busquedas.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Crear un archivo .env en la raíz con la API KEY y la URL
+
+La API KEY gratuita para el proyecto se obtiene de: https://openweathermap.org/api
