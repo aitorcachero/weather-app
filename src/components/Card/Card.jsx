@@ -1,7 +1,6 @@
 import './Card.css';
 import useWeather from '../../hooks/useWeather';
 import Loader from '../Loader/Loader';
-import { removeItemLS } from '../../services/localStorage';
 import backgroundimg from '../../assets/weatherCard.jpg';
 
 export default function Card() {
@@ -25,11 +24,11 @@ export default function Card() {
         }}
       >
         <main className="card-body">
-          {/* {loading && (
+          {loading && (
             <div className="loader">
               <Loader />
             </div>
-          )} */}
+          )}
           {weather && weather.cod === 200 && (
             <header className="card-header">
               <h1 className="card-city">
