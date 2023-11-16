@@ -76,6 +76,9 @@ export default function Card() {
               type="text"
               placeholder="Ciudad..."
             />
+            <button className="button-search" type="submit">
+              Buscar
+            </button>
           </form>
           <div className="last-searchs">
             <div className="last-searchs-title-container">
