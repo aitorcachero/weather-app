@@ -5,21 +5,35 @@ import { toast } from 'react-toastify';
 import translate from '../helpers/translate';
 import typeCard from '../services/typeCard.js';
 
-import { setItemLS, getItemLS } from '../services/localStorage.js';
+import {
+  setItemLS,
+  getItemLS,
+  removeItemLS,
+} from '../services/localStorage.js';
 
 export default function useWeather() {
-  const [weather, setWeather] = useState({});
+  const [weather, setWeather] = useState();
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [lastSearchs, setLastSearchs] = useState([]);
+  const [lastSearchs, setLastSearchs] = useState();
   const [bg, setBg] = useState('/src/assets/weatherCard.jpg');
-  useEffect(() => {
-    const items = getItemLS().split(',');
 
+  useEffect(() => {
+    const items = getItemLS();
+    console.log('aaaa', items);
     if (items) {
-      setLastSearchs(items);
+      setLastSearchs(items.split(','));
+    } else {
+      setLastSearchs([]);
     }
+    console.log('bbbb', items);
   }, []);
+
+  useEffect(() => {
+    if (weather) {
+      setItemLS(lastSearchs);
+    }
+  }, [weather]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,10 +43,9 @@ export default function useWeather() {
       setBg(typeCard(data.weather[0].description));
       const trans = translate(data);
       setWeather(trans);
-      const items = getItemLS().split(',');
-      items.push(e.target[0].value);
-      setLastSearchs(items);
-      setItemLS(items);
+      setLastSearchs((prev) => {
+        return [...prev, e.target[0].value];
+      });
       setError(false);
       setLoading(false);
     } else {
@@ -65,6 +78,11 @@ export default function useWeather() {
     }
   };
 
+  const handleDeleteLS = () => {
+    setLastSearchs([]);
+    removeItemLS();
+  };
+
   return {
     weather,
     error,
@@ -72,6 +90,7 @@ export default function useWeather() {
     handleSubmit,
     lastSearchs,
     handleClick,
+    handleDeleteLS,
     bg,
   };
 }

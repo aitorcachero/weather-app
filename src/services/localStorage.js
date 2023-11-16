@@ -1,10 +1,16 @@
+import useWeather from '../hooks/useWeather';
+
 function getItemLS() {
   const items = JSON.stringify(localStorage.getItem('lastsearchs'));
   return items ? JSON.parse(items) : [];
 }
 
 function setItemLS(data) {
-  localStorage.setItem('lastsearchs', data.reverse());
+  localStorage.setItem('lastsearchs', data);
 }
 
-export { setItemLS, getItemLS };
+function removeItemLS() {
+  localStorage.removeItem('lastsearchs');
+}
+
+export { setItemLS, getItemLS, removeItemLS };
