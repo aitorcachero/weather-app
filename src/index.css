@@ -23,7 +23,13 @@ body {
   align-items: center;
   width: 100vw;
   height: 100vh;
-  background-color: #242424;
+
+  background: rgb(245, 169, 98);
+  background: linear-gradient(
+    126deg,
+    rgba(245, 169, 98, 1) 0%,
+    rgba(176, 165, 158, 1) 100%
+  );
 }
 
 h1 {
