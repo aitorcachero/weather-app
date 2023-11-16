@@ -44,12 +44,14 @@ export default function useWeather() {
       setLastSearchs((prev) => {
         return [...prev, e.target[0].value];
       });
+
       setError(false);
       setLoading(false);
     } else {
       setError(true);
-
       toast.error('Ciudad no encontrada');
+      e.target[0].value = '';
+      setWeather();
       setLoading(false);
     }
   };
@@ -62,10 +64,10 @@ export default function useWeather() {
       setBg(typeCard(data.weather[0].description));
       const trans = translate(data);
       setWeather(trans);
-      const items = getItemLS().split(',');
-      items.push(e.target.textContent);
-      setLastSearchs(items);
-      setItemLS(items);
+      setLastSearchs((prev) => {
+        return [...prev, e.target.textContent];
+      });
+
       setError(false);
       setLoading(false);
     } else {
