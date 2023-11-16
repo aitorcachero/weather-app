@@ -16,17 +16,15 @@ export default function useWeather() {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [lastSearchs, setLastSearchs] = useState();
-  const [bg, setBg] = useState('/src/assets/weatherCard.jpg');
+  const [bg, setBg] = useState();
 
   useEffect(() => {
     const items = getItemLS();
-    console.log('aaaa', items);
     if (items) {
       setLastSearchs(items.split(','));
     } else {
       setLastSearchs([]);
     }
-    console.log('bbbb', items);
   }, []);
 
   useEffect(() => {

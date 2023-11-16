@@ -2,6 +2,7 @@ import './Card.css';
 import useWeather from '../../hooks/useWeather';
 import Loader from '../Loader/Loader';
 import { removeItemLS } from '../../services/localStorage';
+import backgroundimg from '../../assets/weatherCard.jpg';
 
 export default function Card() {
   const {
@@ -12,7 +13,7 @@ export default function Card() {
     lastSearchs,
     handleClick,
     handleDeleteLS,
-    bg,
+    bg = backgroundimg,
   } = useWeather();
 
   return (
