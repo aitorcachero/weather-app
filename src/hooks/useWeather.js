@@ -35,6 +35,10 @@ export default function useWeather() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!e.target[0].value) {
+      toast.error('Debes ingresar una ciudad');
+      return;
+    }
     setLoading(true);
     const data = await fetchData(e.target[0].value);
     if (data.cod === 200) {
