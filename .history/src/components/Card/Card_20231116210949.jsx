@@ -1,7 +1,7 @@
 import './Card.css';
 import useWeather from '../../hooks/useWeather';
 import Loader from '../Loader/Loader';
-import backgroundimg from '../../assets/weatherCard.webp';
+import backgroundimg from '../../assets/weatherCard.jpg';
 
 export default function Card() {
   const {

@@ -49,6 +49,7 @@ export default function useWeather() {
         (x) => x !== e.target[0].value
       );
       updateLastSearchs.unshift(e.target[0].value);
+      console.log(updateLastSearchs);
       setLastSearchs(updateLastSearchs);
 
       setError(false);

@@ -48,8 +48,11 @@ export default function useWeather() {
       const updateLastSearchs = [...lastSearchs].filter(
         (x) => x !== e.target[0].value
       );
-      updateLastSearchs.unshift(e.target[0].value);
-      setLastSearchs(updateLastSearchs);
+      setLastSearchs((prev) => {
+        return [...prev]
+          .filter((x) => x !== e.target[0].value)
+          .unshift(e.target[0].value);
+      });
 
       setError(false);
       setLoading(false);

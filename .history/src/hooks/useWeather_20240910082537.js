@@ -45,11 +45,12 @@ export default function useWeather() {
       setBg(typeCard(data.weather[0].description));
       const trans = translate(data);
       setWeather(trans);
-      const updateLastSearchs = [...lastSearchs].filter(
-        (x) => x !== e.target[0].value
-      );
-      updateLastSearchs.unshift(e.target[0].value);
-      setLastSearchs(updateLastSearchs);
+      const updateLastSearchs = [...lastSearchs];
+      setLastSearchs((prev) => {
+        return [...prev]
+          .filter((x) => x !== e.target[0].value)
+          .unshift(e.target[0].value);
+      });
 
       setError(false);
       setLoading(false);

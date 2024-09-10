@@ -1,12 +1,12 @@
-import nubes from '../assets/nubes.webp';
-import nubarrones from '../assets/nubarrones.webp';
-import soleado from '../assets/soleado.webp';
-import lluvias from '../assets/lluvias.webp';
-import lluviasalt from '../assets/lluviasalt.webp';
-import tormentas from '../assets/tormentas.webp';
-import niebla from '../assets/niebla.webp';
-import nieve from '../assets/nieve.webp';
-import nieveligera from '../assets/nieveligera.webp';
+import nubes from '../assets/nubes.wepb';
+import nubarrones from '../assets/nubarrones.wepb';
+import soleado from '../assets/soleado.wepb';
+import lluvias from '../assets/lluvias.wepb';
+import lluviasalt from '../assets/lluviasalt.wepb';
+import tormentas from '../assets/tormentas.wepb';
+import niebla from '../assets/niebla.wepb';
+import nieve from '../assets/nieve.wepb';
+import nieveligera from '../assets/nieveligera.wepb';
 
 export default function typeCard(data) {
   const bg = {
