@@ -12,7 +12,6 @@ import {
 } from '../services/localStorage.js';
 
 export default function useWeather() {
-  const [search, setSearch] = useState('');
   const [weather, setWeather] = useState();
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -37,7 +36,7 @@ export default function useWeather() {
   const handleSubmit = async (e, value) => {
     e.preventDefault();
     if (value.toLowerCase() === lastSearchs[0].toLowerCase()) return;
-
+    console.log(value);
     if (!value) {
       toast.error('Debes ingresar una ciudad');
       return;
@@ -59,7 +58,7 @@ export default function useWeather() {
     } else {
       setError(true);
       toast.error('Ciudad no encontrada');
-      setSearch('');
+      value = '';
       setWeather();
       setLoading(false);
     }
@@ -76,8 +75,6 @@ export default function useWeather() {
     loading,
     handleSubmit,
     lastSearchs,
-    search,
-    setSearch,
     // handleClick,
     handleDeleteLS,
     bg,

@@ -6,12 +6,12 @@ import backgroundimg from '../../assets/weatherCard.webp';
 export default function Card() {
   const {
     weather,
+    error,
     loading,
     handleSubmit,
     lastSearchs,
+    handleClick,
     handleDeleteLS,
-    search,
-    setSearch,
     bg = backgroundimg,
   } = useWeather();
 
@@ -70,13 +70,14 @@ export default function Card() {
           )}
         </main>
         <aside className="aside">
-          <form className="form" onSubmit={(e) => handleSubmit(e, search)}>
+          <form
+            className="form"
+            onSubmit={(e) => handleSubmit(e, e.target[0].value)}
+          >
             <input
               className="input-search"
               type="text"
               placeholder="Ciudad..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
             />
             <button className="button-search" type="submit">
               Buscar
@@ -92,11 +93,7 @@ export default function Card() {
                   .reverse()
                   .slice(0, 10)
                   .map((search, index) => (
-                    <li
-                      key={index}
-                      className="li"
-                      onClick={(e) => handleSubmit(e, e.target.textContent)}
-                    >
+                    <li key={index} className="li" onClick={handleClick}>
                       {search.toUpperCase()}
                     </li>
                   ))}

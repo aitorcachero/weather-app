@@ -1,3 +1,5 @@
+import useWeather from '../hooks/useWeather';
+
 function getItemLS() {
   const items = JSON.stringify(localStorage.getItem('lastsearchs'));
   return items ? JSON.parse(items) : [];

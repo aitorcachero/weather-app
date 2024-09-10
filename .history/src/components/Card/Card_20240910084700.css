@@ -48,10 +48,6 @@
   backdrop-filter: blur(20px);
 }
 
-.card-city {
-  font-size: 3rem;
-}
-
 .card-footer {
   position: absolute;
   bottom: 0;

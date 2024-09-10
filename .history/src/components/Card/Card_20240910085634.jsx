@@ -70,12 +70,14 @@ export default function Card() {
           )}
         </main>
         <aside className="aside">
-          <form className="form" onSubmit={(e) => handleSubmit(e, search)}>
+          <form
+            className="form"
+            onSubmit={(e) => handleSubmit(e, e.target[0].value)}
+          >
             <input
               className="input-search"
               type="text"
               placeholder="Ciudad..."
-              value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
             <button className="button-search" type="submit">

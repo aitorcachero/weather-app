@@ -12,7 +12,6 @@ import {
 } from '../services/localStorage.js';
 
 export default function useWeather() {
-  const [search, setSearch] = useState('');
   const [weather, setWeather] = useState();
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -59,7 +58,7 @@ export default function useWeather() {
     } else {
       setError(true);
       toast.error('Ciudad no encontrada');
-      setSearch('');
+      value = '';
       setWeather();
       setLoading(false);
     }
@@ -76,8 +75,6 @@ export default function useWeather() {
     loading,
     handleSubmit,
     lastSearchs,
-    search,
-    setSearch,
     // handleClick,
     handleDeleteLS,
     bg,

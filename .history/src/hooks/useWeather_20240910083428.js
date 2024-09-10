@@ -12,7 +12,6 @@ import {
 } from '../services/localStorage.js';
 
 export default function useWeather() {
-  const [search, setSearch] = useState('');
   const [weather, setWeather] = useState();
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -34,24 +33,22 @@ export default function useWeather() {
     }
   }, [weather]);
 
-  const handleSubmit = async (e, value) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (value.toLowerCase() === lastSearchs[0].toLowerCase()) return;
-
-    if (!value) {
+    if (!e.target[0].value) {
       toast.error('Debes ingresar una ciudad');
       return;
     }
     setLoading(true);
-    const data = await fetchData(value);
+    const data = await fetchData(e.target[0].value);
     if (data.cod === 200) {
       setBg(typeCard(data.weather[0].description));
       const trans = translate(data);
       setWeather(trans);
       const updateLastSearchs = [...lastSearchs].filter(
-        (x) => x.toLowerCase() !== value.toLowerCase()
+        (x) => x !== e.target[0].value
       );
-      updateLastSearchs.unshift(value);
+      updateLastSearchs.unshift(e.target[0].value);
       setLastSearchs(updateLastSearchs);
 
       setError(false);
@@ -59,11 +56,35 @@ export default function useWeather() {
     } else {
       setError(true);
       toast.error('Ciudad no encontrada');
-      setSearch('');
+      e.target[0].value = '';
       setWeather();
       setLoading(false);
     }
   };
+
+  // const handleClick = async (e) => {
+  //   e.preventDefault();
+  //   setLoading(true);
+  //   const data = await fetchData(e.target.textContent);
+  //   if (data.cod === 200) {
+  //     setBg(typeCard(data.weather[0].description));
+  //     const trans = translate(data);
+  //     setWeather(trans);
+  //     const updateLastSearchs = [...lastSearchs].filter(
+  //       (x) => x !== e.target.textContent
+  //     );
+  //     updateLastSearchs.unshift(e.target.textContent);
+  //     setLastSearchs(updateLastSearchs);
+
+  //     setError(false);
+  //     setLoading(false);
+  //   } else {
+  //     setError(true);
+
+  //     toast.error('Ciudad no encontrada');
+  //     setLoading(false);
+  //   }
+  // };
 
   const handleDeleteLS = () => {
     setLastSearchs([]);
@@ -76,9 +97,7 @@ export default function useWeather() {
     loading,
     handleSubmit,
     lastSearchs,
-    search,
-    setSearch,
-    // handleClick,
+    handleClick,
     handleDeleteLS,
     bg,
   };

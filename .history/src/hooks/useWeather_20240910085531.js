@@ -59,7 +59,7 @@ export default function useWeather() {
     } else {
       setError(true);
       toast.error('Ciudad no encontrada');
-      setSearch('');
+      value = '';
       setWeather();
       setLoading(false);
     }

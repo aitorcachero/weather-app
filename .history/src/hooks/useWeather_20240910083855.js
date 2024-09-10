@@ -12,7 +12,6 @@ import {
 } from '../services/localStorage.js';
 
 export default function useWeather() {
-  const [search, setSearch] = useState('');
   const [weather, setWeather] = useState();
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -36,22 +35,21 @@ export default function useWeather() {
 
   const handleSubmit = async (e, value) => {
     e.preventDefault();
-    if (value.toLowerCase() === lastSearchs[0].toLowerCase()) return;
-
+    console.log(value);
     if (!value) {
       toast.error('Debes ingresar una ciudad');
       return;
     }
     setLoading(true);
-    const data = await fetchData(value);
+    const data = await fetchData(e.target[0].value);
     if (data.cod === 200) {
       setBg(typeCard(data.weather[0].description));
       const trans = translate(data);
       setWeather(trans);
       const updateLastSearchs = [...lastSearchs].filter(
-        (x) => x.toLowerCase() !== value.toLowerCase()
+        (x) => x.toLowerCase() !== e.target[0].value.toLowerCase()
       );
-      updateLastSearchs.unshift(value);
+      updateLastSearchs.unshift(e.target[0].value);
       setLastSearchs(updateLastSearchs);
 
       setError(false);
@@ -59,7 +57,7 @@ export default function useWeather() {
     } else {
       setError(true);
       toast.error('Ciudad no encontrada');
-      setSearch('');
+      e.target[0].value = '';
       setWeather();
       setLoading(false);
     }
@@ -76,8 +74,6 @@ export default function useWeather() {
     loading,
     handleSubmit,
     lastSearchs,
-    search,
-    setSearch,
     // handleClick,
     handleDeleteLS,
     bg,

@@ -48,10 +48,6 @@
   backdrop-filter: blur(20px);
 }
 
-.card-city {
-  font-size: 3rem;
-}
-
 .card-footer {
   position: absolute;
   bottom: 0;
@@ -309,6 +305,7 @@ li:hover {
   }
 
   .card-header {
+    background-color: rgba(255, 255, 255, 0);
     backdrop-filter: blur(20px);
   }
 
@@ -334,7 +331,4 @@ li:hover {
 }
 
 @media (min-width: 764px) {
-  .card-header {
-    backdrop-filter: blur(20px);
-  }
 }

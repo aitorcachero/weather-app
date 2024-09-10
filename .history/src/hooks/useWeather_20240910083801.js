@@ -12,7 +12,6 @@ import {
 } from '../services/localStorage.js';
 
 export default function useWeather() {
-  const [search, setSearch] = useState('');
   const [weather, setWeather] = useState();
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -36,33 +35,32 @@ export default function useWeather() {
 
   const handleSubmit = async (e, value) => {
     e.preventDefault();
-    if (value.toLowerCase() === lastSearchs[0].toLowerCase()) return;
+    console.log(value);
+    // if (!e.target[0].value) {
+    //   toast.error('Debes ingresar una ciudad');
+    //   return;
+    // }
+    // setLoading(true);
+    // const data = await fetchData(e.target[0].value);
+    // if (data.cod === 200) {
+    //   setBg(typeCard(data.weather[0].description));
+    //   const trans = translate(data);
+    //   setWeather(trans);
+    //   const updateLastSearchs = [...lastSearchs].filter(
+    //     (x) => x !== e.target[0].value
+    //   );
+    //   updateLastSearchs.unshift(e.target[0].value);
+    //   setLastSearchs(updateLastSearchs);
 
-    if (!value) {
-      toast.error('Debes ingresar una ciudad');
-      return;
-    }
-    setLoading(true);
-    const data = await fetchData(value);
-    if (data.cod === 200) {
-      setBg(typeCard(data.weather[0].description));
-      const trans = translate(data);
-      setWeather(trans);
-      const updateLastSearchs = [...lastSearchs].filter(
-        (x) => x.toLowerCase() !== value.toLowerCase()
-      );
-      updateLastSearchs.unshift(value);
-      setLastSearchs(updateLastSearchs);
-
-      setError(false);
-      setLoading(false);
-    } else {
-      setError(true);
-      toast.error('Ciudad no encontrada');
-      setSearch('');
-      setWeather();
-      setLoading(false);
-    }
+    //   setError(false);
+    //   setLoading(false);
+    // } else {
+    //   setError(true);
+    //   toast.error('Ciudad no encontrada');
+    //   e.target[0].value = '';
+    //   setWeather();
+    //   setLoading(false);
+    // }
   };
 
   const handleDeleteLS = () => {
@@ -76,8 +74,6 @@ export default function useWeather() {
     loading,
     handleSubmit,
     lastSearchs,
-    search,
-    setSearch,
     // handleClick,
     handleDeleteLS,
     bg,

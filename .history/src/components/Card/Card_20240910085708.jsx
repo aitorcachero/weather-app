@@ -75,7 +75,6 @@ export default function Card() {
               className="input-search"
               type="text"
               placeholder="Ciudad..."
-              value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
             <button className="button-search" type="submit">
