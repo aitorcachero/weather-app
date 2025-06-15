@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import 'tailwindcss';
+
+@layer base {
+  * {
+    @apply font-inter;
+  }
+
+  body {
+    @apply m-0 w-screen h-screen bg-dark-primary overflow-hidden relative;
+    background-image: radial-gradient(
+        ellipse at 20% 20%,
+        rgba(0, 212, 255, 0.15) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        ellipse at 80% 20%,
+        rgba(124, 58, 237, 0.15) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        ellipse at 20% 80%,
+        rgba(100, 255, 218, 0.1) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        ellipse at 80% 80%,
+        rgba(0, 212, 255, 0.1) 0%,
+        transparent 50%
+      );
+    animation: pulse-slow;
+  }
+
+  body::before {
+    @apply content-[''] fixed inset-0 pointer-events-none -z-20;
+    background: radial-gradient(
+        circle at 25% 25%,
+        rgba(0, 212, 255, 0.05) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 75% 75%,
+        rgba(124, 58, 237, 0.05) 0%,
+        transparent 50%
+      );
+    background-size: 200% 200%;
+    animation: pulse-slow;
+  }
+
+  body::after {
+    @apply content-[''] fixed inset-0 pointer-events-none -z-10;
+    background-image: radial-gradient(
+        1px 1px at 20% 30%,
+        rgba(0, 212, 255, 0.6),
+        transparent
+      ),
+      radial-gradient(1px 1px at 40% 70%, rgba(124, 58, 237, 0.6), transparent),
+      radial-gradient(1px 1px at 60% 20%, rgba(100, 255, 218, 0.6), transparent),
+      radial-gradient(1px 1px at 80% 80%, rgba(0, 212, 255, 0.6), transparent),
+      radial-gradient(1px 1px at 10% 90%, rgba(124, 58, 237, 0.6), transparent),
+      radial-gradient(1px 1px at 90% 10%, rgba(100, 255, 218, 0.6), transparent);
+    background-size: 400px 400px;
+    animation: float;
+  }
+
+  ::selection {
+    @apply bg-accent-cyan/30 text-white;
+  }
+
+  ::-webkit-scrollbar {
+    @apply w-1.5;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-dark-primary rounded;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gradient-to-r from-accent-cyan to-accent-purple rounded;
+  }
+}
+
+@layer components {
+  .glass-effect {
+    @apply bg-glass-light backdrop-blur-xl border border-white/10;
+  }
+
+  .glass-hover {
+    @apply hover:bg-glass-medium hover:border-accent-cyan/30;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-accent-cyan to-accent-purple bg-clip-text text-transparent;
+  }
+
+  .gradient-bg {
+    @apply bg-gradient-to-br from-accent-cyan to-accent-purple;
+  }
+
+  .shimmer-effect {
+    @apply relative overflow-hidden;
+  }
+
+  .shimmer-effect::before {
+    @apply content-[''] absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent;
+    animation: shimmer 2s linear infinite;
+  }
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  line-height: 1.1;
+}
+
+/* Efectos de selección personalizados */
+::selection {
+  background: rgba(0, 212, 255, 0.3);
+  color: #ffffff;
+}
+
+::-moz-selection {
+  background: rgba(0, 212, 255, 0.3);
+  color: #ffffff;
+}
+
+/* Estilos para elementos de formulario en modo oscuro */
+input,
+button,
+select,
+textarea {
+  color-scheme: dark;
+}
+
+/* Mejoras de accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Soporte para modo de alto contraste */
+@media (prefers-contrast: high) {
+  :root {
+    --border-color: rgba(255, 255, 255, 0.4);
+    --text-secondary: #ffffff;
+  }
+}
+
+/* Efectos de carga suave */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card {
+  animation: fadeIn 0.8s ease-out;
+}
